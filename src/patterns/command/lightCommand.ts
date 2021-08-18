@@ -41,7 +41,7 @@ export interface Command {
 }
 
 // Command Concrete Classes
-export class lightOnCommand implements Command {
+export class LightOnCommand implements Command {
   light: Light;
 
   constructor(light: Light) {
@@ -53,7 +53,7 @@ export class lightOnCommand implements Command {
   }
 }
 
-export class lightOffCommand implements Command {
+export class LightOffCommand implements Command {
   light: Light;
 
   constructor(light: Light) {

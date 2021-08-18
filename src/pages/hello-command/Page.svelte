@@ -1,13 +1,26 @@
 <script>
+  import { invokeHandler } from "./command-light";
+
   let commands = {
     on: "on",
+    off: "off",
+    red0: "red/0",
     red1: "red/1",
+    red2: "red/2",
+    red3: "red/3",
   };
 
-  let src = `./images/light-receiver/${commands["on"]}.png`;
+  let command = "on";
+
+  function invokeCommand(action) {
+    $: command = invokeHandler(action);
+    $: src = `./images/light-receiver/${commands[command]}.png`;
+  }
+  let src = `./images/light-receiver/${commands[command]}.png`;
 
 </script>
 
+<!-- svelte-ignore non-top-level-reactive-declaration -->
 <style>
   .btn-group button {
     padding: 10px 24px;
@@ -56,13 +69,19 @@
 <h1>Command buttons</h1>
 
 <div class="btn-group">
-  <button class="on">On</button>
-  <button class="off">Off</button>
+  <button class="on" on:click={() => invokeCommand('lightOn')}>On</button>
+  <button class="off" on:click={() => invokeCommand('lightOff')}>Off</button>
 
-  <button class="increase-lum">+</button>
-  <button class="decrease-lum">-</button>
+  <button
+    class="increase-lum"
+    on:click={() => invokeCommand('increaseLuminosity')}>+</button>
+  <button
+    class="decrease-lum"
+    on:click={() => invokeCommand('decreaseLuminosity')}>-</button>
 
-  <button class="red-light">Red</button>
+  <button
+    class="red-light"
+    on:click={() => invokeCommand('redLightOn')}>Red</button>
 </div>
 
 <div class="portrait"><img {src} alt={src} /></div>
