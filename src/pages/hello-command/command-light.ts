@@ -11,14 +11,17 @@ import {
   RemoteController,
 } from "../../patterns/command/lightCommand";
 
+// execute corresponding receiver
 const actionHandler = (command: Command) => {
   const remoteController = new RemoteController(command);
   return remoteController.execute();
 };
 
+// state for normal and red light
 var isRedLightOn: boolean = false;
 var isLightOn: boolean = false;
 
+// Handling different events invoked by a invoker (here Remote)
 export const invokeHandler = (command: string) => {
   var tempResult;
   switch (command) {

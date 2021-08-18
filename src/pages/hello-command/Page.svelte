@@ -1,6 +1,7 @@
 <script>
   import { invokeHandler } from "./command-light";
 
+  // All commands for controlling the lights
   let commands = {
     on: "on",
     off: "off",
